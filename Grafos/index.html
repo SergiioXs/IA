@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+			
+			var matrix = [
+				[1,2],
+				[2,3,4,0],
+				[1, 0, 5],
+				[1,4],
+				[1,3,5],
+				[4]
+			];	
+			console.log(matrix);
+			var ruta = [];
+
+			function buscar(inicio, final) {
+				ruta.push(inicio);
+				
+				if(inicio == final) {
+					return true;
+				}
+
+				for(x in matrix[inicio]){
+					
+					if(matrix[inicio][x] == final) {
+						console.log("encontrado");
+						ruta.push(matrix[inicio][x]);
+						return true;		
+					}
+				}
+				
+				for(x in matrix[inicio]) {
+					v = true;
+					for(y in ruta) {
+						if(matrix[inicio][x] == ruta[y])
+							v = false;
+					}
+					if(v)
+						if(buscar(matrix[inicio][x], final))
+							return true;
+					
+				}
+
+				return false;
+			}
+
+			console.log(buscar(3,0));
+			console.log(ruta);
+	</script>
+
+</head>
+	
+<body>
+
+</body>
+</html>
