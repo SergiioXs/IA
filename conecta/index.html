@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title></title>
+	<script type="text/javascript" src="node_modules/angular/angular.js"></script>
+
+	<script type="text/javascript" src="app.js"></script>
+</head>
+<body style="background-color: black;" ng-controller="game">
+<!--
+	Cochinero donde se imprime lo grafico xd
+-->
+	<div style="width: 60%; margin-left: 20%;" ng-init="dif = 1;">
+		<div style="width: 100%; margin-top: 20px; margin-bottom: 20px;">
+			<button ng-click="createStage(dif)" style="width: 49.5%; height: 40px;">Crear juego</button>
+			<button ng-click="resolver()" style="width: 49.5%; height: 40px;">Solucionar juego</button>
+			<button style="width: 32%; height: 40px; background-color: {{dif == 1 ? 'red' : ''}};" ng-click="dif = 1" >Level 1</button>
+			<button style="width: 32%; height: 40px; background-color: {{dif == 2 ? 'red' : ''}};" ng-click="dif = 2">Level 2</button>
+			<button style="width: 32%; height: 40px; background-color: {{dif == 3 ? 'red' : ''}};" ng-click="dif = 3">Level 3</button>
+		</div>	
+		<table style="width: 100%;">
+			<tr ng-repeat="x in matriz">
+				<td ng-repeat="y in matriz[$index]" style="color: white; text-align: center; vertical-align: center; padding: 5px; border: 1px solid white;
+					background-color: {{!y.z ? '' : y.z.data.color}}; 
+					">
+					<span style="font-family: arial; text-shadow:  -1px 1px 0 #000; color: white;"><b>{{!y.z ? '-' : y.z.data.name}}</b></span>
+				</td>
+			</tr>
+		</table>
+		<button style="width: 100%; margin-top: 20px; height: 40px;" ng-click="limpiar()">Reiniciar este juego</button>
+	</div>
+</body>
+</html>
