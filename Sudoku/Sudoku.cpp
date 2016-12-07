@@ -1,10 +1,15 @@
+//ITE - IA
+//EDUARDO PEREA
+//SERGIO CRUZ
+//Juego del sudoku
 
+//Librerias
 #include <stdio.h>
 #include <time.h>
 #include <windows.h> 
 #include <stdlib.h>
 
-
+//Declaracion de variables y arreglos
 int scan(int num,int array[9][9],int tam,int j,int h);
 
 void draw(int tem,int temn);
@@ -19,6 +24,7 @@ int temp1=0,teclado=0,b,c,contx=0,conty=0,xx=5,yy=5,jota,fstop=0,aleatorio,l=0,i
 int tem,temn,conty2,contx2;
 int comparar(int b,int c);
 
+//Cuerpo Principal
 int main()
 {	
 	while(temp1==0)
@@ -31,13 +37,18 @@ int main()
 	}
 }
 
+//Dibujamos nuestro plano
 void draw(int tem,int temn)
 {
-	
+	//Presentacion
 	printf("INSTITUTO TECNOLOGICO DE ENSENADA\n");
 	printf("Juego Sudoku \n");
 	printf("Por: Fco. Eduardo Perea, Sergio Cruz\n");
+	
+	//Iniciamos nuestro Random que usaremos para declarar los campos ocupados iniciales
 	srand(time(NULL));
+	
+	
 	for(b=0;b<9;b++)
 	{
 		printf("\n \n\n");
@@ -61,11 +72,16 @@ void draw(int tem,int temn)
 		}
 	}						
 }
+
+//Proceguimos con el llenado de nuestras matricez considerando los espacios ocupados por nuestro random
 void llenar(int array1[9][9])
 {	
+	
 	srand(time(NULL));
+
 	do{
 		conta2=0;conta=0;
+		
 		for(b=0;b<9;b++)
 		{
 			for(c=0;c<9;c++)
@@ -74,19 +90,26 @@ void llenar(int array1[9][9])
 				array3[b][c]=0;	
 			}
 		}
+		
 		for(b=0;b<9;b++)
 		{
+			
 			for(c=0;c<9;c++)
 			{
+				
 				conta=0;
 				i=comparar(b,c);
 				do
 				{
+				
+					
 					aleatorio=1+rand()%9;
 					fstop=scan(aleatorio,array1,9,b,c);
 					conta++;
 					if(conta>100)
 					{
+					
+						
 						fstop=0;
 						array3[i][aleatorio-1]=0;
 						c=9;
@@ -98,12 +121,14 @@ void llenar(int array1[9][9])
 				else if(c>5 && c<9){array3[i][aleatorio-1]=1;}	
 				array1[b][c]=aleatorio;
 				conta2++;	
+				
 			}
 		}
 	}while(conta2!=81);
 }
 
-int scan(int num,int array[9][9],int tam,int b,int c) // Analiza los nums que se repiten
+// Esta funcion analiza los nums de nuestra matriz y le dice cuando parar
+int scan(int num,int array[9][9],int tam,int b,int c)
 {
 	int i,stop=0;          
 	for(i=0;(i<tam && stop==0);i++)
@@ -114,6 +139,7 @@ int scan(int num,int array[9][9],int tam,int b,int c) // Analiza los nums que se
 }
 
 
+//Aqui analizamos nuestraz matricez y revisando las filas y columnas para evitar coincidencias
 int comparar(int b,int c)
 {
 	if(b<3)
