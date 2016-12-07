@@ -2,31 +2,34 @@
 <html ng-app="app">
 <head>
 	<title></title>
-	<script type="text/javascript" src="node_modules/angular/angular.js"></script>
+	<script type="text/javascript" src="node_modules/angular/angular.js"></script> <!-- Cargamos angular -->
 
-	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="app.js"></script> <!-- cargamos el script -->
 </head>
 <body style="background-color: black;" ng-controller="game">
 <!--
 	Cochinero donde se imprime lo grafico xd
 -->
-	<div style="width: 60%; margin-left: 20%;" ng-init="dif = 1;">
+	<div style="width: 60%; margin-left: 20%;" ng-init="dif = 1;"> <!-- dif Inicia en nivel easy -->
 		<div style="width: 100%; margin-top: 20px; margin-bottom: 20px;">
-			<button ng-click="createStage(dif)" style="width: 49.5%; height: 40px;">Crear juego</button>
-			<button ng-click="resolver()" style="width: 49.5%; height: 40px;">Solucionar juego</button>
+			<button ng-click="createStage(dif)" style="width: 49.5%; height: 40px;">Crear juego</button> <!-- Crea una nueva matriz con el nivel seleccionado (dif) -->
+			<button ng-click="resolver()" style="width: 49.5%; height: 40px;">Solucionar juego</button><!-- Corre la funcion para resolver -->
+			<!-- Al precionar un boton el nivel cambia  -->
 			<button style="width: 32%; height: 40px; background-color: {{dif == 1 ? 'red' : ''}};" ng-click="dif = 1" >Level 1</button>
 			<button style="width: 32%; height: 40px; background-color: {{dif == 2 ? 'red' : ''}};" ng-click="dif = 2">Level 2</button>
 			<button style="width: 32%; height: 40px; background-color: {{dif == 3 ? 'red' : ''}};" ng-click="dif = 3">Level 3</button>
 		</div>	
 		<table style="width: 100%;">
-			<tr ng-repeat="x in matriz">
+			<tr ng-repeat="x in matriz"> <!-- Se imprime la matriz  -->
 				<td ng-repeat="y in matriz[$index]" style="color: white; text-align: center; vertical-align: center; padding: 5px; border: 1px solid white;
-					background-color: {{!y.z ? '' : y.z.data.color}}; 
+					background-color: {{!y.z ? '' : y.z.data.color}}; /*Se coloca el color que tenga el campo de la matriz */
 					">
+					<!-- Si esta ocupado el campo de la matriz se coloca su letra de lo contrario se coloca un '-' -->
 					<span style="font-family: arial; text-shadow:  -1px 1px 0 #000; color: white;"><b>{{!y.z ? '-' : y.z.data.name}}</b></span>
 				</td>
 			</tr>
 		</table>
+		<!-- Boton que reinicia la matriz -->
 		<button style="width: 100%; margin-top: 20px; height: 40px;" ng-click="limpiar()">Reiniciar este juego</button>
 	</div>
 </body>
